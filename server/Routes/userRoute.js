@@ -2,6 +2,8 @@ import express from "express";
 import bcrypt from 'bcrypt'
 const router = express.Router();
 import User from "../models/user.js";
+import jwt from 'jsonwebtoken';
+
 
 router.post('/register',async (req,res)=>{
     const saltRounds = 10;
@@ -43,9 +45,10 @@ router.post('/login', async (req,res)=>{
         return res.json({msg: "please sign in first"});
     }
 
-    bcrypt.compare(password,existingUser.password,function(err,result){
+    bcrypt.compare(password,existingUser.password,async function(err,result){
         if(result){
-            return res.json({msg : "Logged in successfully"});
+            const token =  await jwt.sign({_id : existingUser.id},process.env.JWT_SECRET);
+            return res.json({msg : "Logged in successfully" , token});
         }else{
             console.log(err);
             return res.json({msg : "Password incorrect"});
