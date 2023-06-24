@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const userSchema = new mongoose.Schema({
     name : {
         required : true,
@@ -16,16 +15,7 @@ const userSchema = new mongoose.Schema({
         required : true,
         type : String
     }
-})
+},{timestamps : true})
 
-// const User = new mongoose.model('USER',userSchema);
-
-// const Binit = new User({
-//     name : "Binit",
-//     email : "test@123",
-//     password : "123456"
-// })
-
-// Binit.save();
-
+const User = mongoose.model('USER',userSchema);
 export default User;

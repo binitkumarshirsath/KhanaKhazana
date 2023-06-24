@@ -6,7 +6,7 @@ async function connectDB() {
        const fetchedFoodItem = mongoose.connection.db.collection('FoodItems');
        console.log('Connection to DB successful');
        const data = await fetchedFoodItem.find({}).toArray();
-       console.log(data);
+       
     } catch (e) {
        console.log(`Error while connecting to the database: ${e}`);
     }

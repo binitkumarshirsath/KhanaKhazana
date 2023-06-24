@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-
+import axios from 'axios'
 export default function Login() {
+
+  const [user,setUser] = useState({
+    email : '',
+    password :''
+  }); 
+
+  function handleChange(e){
+    const{name , value} = e.target;
+    setUser((prevData)=>{
+      return{
+        ...prevData,
+        [name] : value
+      }
+    })
+  }
+
+  function handleSubmit(e){
+    e.preventDefault();
+    try {
+      const response = axios.post('/api/login',user);
+      console.log('Data sent'+ response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <Layout>
@@ -29,6 +55,8 @@ export default function Login() {
                       Email
                     </label>
                     <input
+                    onChange={handleChange}
+                    value={user.email}
                       type="email"
                       name="email"
                       id="email"
@@ -41,6 +69,8 @@ export default function Login() {
                       Password
                     </label>
                     <input
+                    onChange={handleChange}
+                    value={user.password}
                       type="password"
                       name="password"
                       id="password"
@@ -50,6 +80,7 @@ export default function Login() {
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-5">
                     <input
+                    onClick={handleSubmit}
                       name="login"
                       id="login"
                       className="btn login-btn"
