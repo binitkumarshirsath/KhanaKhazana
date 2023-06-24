@@ -13,7 +13,6 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api',router);
-
 app.listen(process.env.PORT,()=>{
     console.log(`Server is up and running at PORT : ${process.env.PORT}`);
 })

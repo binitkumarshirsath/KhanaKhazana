@@ -58,4 +58,10 @@ router.post('/login', async (req,res)=>{
    
 })
 
+
+router.post('/foodData',(req,res)=>{
+    res.send([global.foodItems , global.foodCategory])
+})
+
+
 export default router;
