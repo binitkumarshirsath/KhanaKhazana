@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
-    <div className=" my-5">
+    <div >
       <footer
         className="text-center text-black"
         style={{ backgroundColor: "#F9E0BB" }}
