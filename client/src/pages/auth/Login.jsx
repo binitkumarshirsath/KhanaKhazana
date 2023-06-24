@@ -6,8 +6,6 @@ import axios from 'axios'
 
 export default function Login() {
 
-  
-
   const [user,setUser] = useState({
     email : '',
     password :''
@@ -23,11 +21,12 @@ export default function Login() {
     })
   }
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault();
     try {
-      const response = axios.post('/api/login',user);
-      console.log('Data sent'+ response);
+      const response = await axios.post('/api/login',user);
+      const authToken = response.data.token;
+      localStorage.setItem('authToken' , authToken);
     } catch (error) {
       console.log(error);
     }

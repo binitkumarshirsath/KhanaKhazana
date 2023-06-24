@@ -3,6 +3,7 @@ import Layout from "./Layout";
 
 import Carousel from "./Carousel";
 import CardItem from "./CardItem";
+import CreateCard from "./CreateCard";
 
 export default function Home() {
   return (
@@ -10,10 +11,7 @@ export default function Home() {
       <Layout>
         <Carousel/>
         <div className="m-2">
-        <CardItem />
-        <CardItem />
-        <CardItem />
-        <CardItem />
+        <CreateCard/>
         </div>
       </Layout>
     </>

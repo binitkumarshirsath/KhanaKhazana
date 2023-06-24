@@ -3,6 +3,7 @@ import { Route , Routes } from "react-router-dom";
 import Home from "./components/Layout/Home";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
+import CreateCard from "./components/Layout/CreateCard";
 
 export default function App() {
   return (

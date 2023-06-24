@@ -1,6 +1,7 @@
 import React from "react";
-
-export default function CardItem() {
+import './CardItem.css'
+export default function CardItem({ filteredFood }) {
+console.log(filteredFood.name);
   const handleQuantityChange = (event) => {
     // Handle quantity change event
   };
@@ -9,15 +10,17 @@ export default function CardItem() {
     // Handle size change event
   };
 
+
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card my-3 zoom-effect" style={{ maxWidth: "18rem", marginRight: "20px"  }}>
       <img
+       style={{ width: "100%", height: "200px", objectFit: "cover" }}
         className="card-img-top"
-        src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000"
-        alt="Card  cap"
+        src={filteredFood.img}
+        alt="Card cap"
       />
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+        <h5 className="card-title">{filteredFood.name}</h5>
         <p className="card-text">
           Some quick example text to build on the card title and make up the
           bulk of the card's content.

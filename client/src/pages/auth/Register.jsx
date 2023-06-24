@@ -88,8 +88,18 @@ export default function Register() {
       <Layout>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-6 col-md-7 intro-section">
-              {/* ... */}
+          <div className="col-sm-6 col-md-7 intro-section">
+              
+              <div className="intro-content-wrapper">
+                <h1 className="intro-title mt-">Welcome to website !</h1>
+                <p className="intro-text mt-5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                </p>
+                <a href="#!" className="btn btn-read-more">
+                  Read more
+                </a>
+              </div>
             </div>
             <div className="col-sm-6 col-md-5 form-section">
               <div className="login-wrapper">
