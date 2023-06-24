@@ -2,7 +2,12 @@ import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import { useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+
 export default function Register() {
+
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -57,6 +62,7 @@ export default function Register() {
         try {
           const response = await axios.post('/api/register',user)
           console.log('Data sent '+ response);
+          navigate('/login')
           setErrors({})
         } catch (error) {
           console.log(error);

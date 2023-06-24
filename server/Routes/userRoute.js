@@ -1,9 +1,10 @@
 import express from "express";
+import bcrypt from 'bcrypt'
 const router = express.Router();
 import User from "../models/user.js";
 
 router.post('/register',async (req,res)=>{
-    console.log("I got triggered");
+    const saltRounds = 10;
     const {name , email , password} = req.body;
     try {
 
@@ -16,12 +17,15 @@ router.post('/register',async (req,res)=>{
             return res.json({msg : "Email already registered"});
         }
 
-        const user = new User({
-            name,email,password
-        });
+        bcrypt.hash(password,saltRounds,async function(err,hash){
+            const user = new User({
+                name,email,password : hash
+            });
+            await user.save();
+            return res.json({msg : "user registered successfully"});
+        })
 
-        await user.save();
-        console.log("User saved Successfully");
+        
     } catch (error) {
         console.log("Error found in Registration : " + error);
     }
@@ -39,14 +43,14 @@ router.post('/login', async (req,res)=>{
         return res.json({msg: "please sign in first"});
     }
 
-
-    if(existingUser.password === password){
-        return res.json({msg : "User logged in"});
-    }else{
-        return res.json({err : "Password doesnt match"});
-    }
-
-    
+    bcrypt.compare(password,existingUser.password,function(err,result){
+        if(result){
+            return res.json({msg : "Logged in successfully"});
+        }else{
+            console.log(err);
+            return res.json({msg : "Password incorrect"});
+        }
+    })
 
    
 })
