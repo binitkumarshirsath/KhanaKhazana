@@ -5,3 +5,8 @@
   .zoom-effect:hover {
     transform: scale(1.05);
   }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-gap: 20px;
+  }

@@ -63,5 +63,8 @@ router.post('/foodData',(req,res)=>{
     res.send([global.foodItems , global.foodCategory])
 })
 
+router.post('/foodDB',(req,res)=>{
+    return res.send(global.foodDB);
+})
 
 export default router;

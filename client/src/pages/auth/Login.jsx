@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 
 export default function Login() {
-
+  const navigate = useNavigate();
   const [user,setUser] = useState({
     email : '',
     password :''
@@ -27,6 +27,7 @@ export default function Login() {
       const response = await axios.post('/api/login',user);
       const authToken = response.data.token;
       localStorage.setItem('authToken' , authToken);
+      navigate('/')
     } catch (error) {
       console.log(error);
     }
