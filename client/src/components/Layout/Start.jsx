@@ -19,7 +19,7 @@ export default function Menu() {
 //call getdatafrombackend only once
   useEffect(() => {
     getDataFromBackend();
-  }, []);
+  }, [setMenuItems]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);

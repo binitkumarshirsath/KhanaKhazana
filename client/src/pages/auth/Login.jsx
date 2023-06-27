@@ -24,6 +24,10 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post("/api/login", user);
+      if(response.data.success === "false"){
+        alert("Please Signup First");
+        return navigate('/signup');
+      }
       const authToken = response.data.token;
       localStorage.setItem("email", user.email);
       localStorage.setItem("authToken", authToken);

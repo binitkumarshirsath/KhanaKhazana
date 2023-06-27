@@ -42,7 +42,7 @@ router.post('/login', async (req,res)=>{
 
     const existingUser = await User.findOne({email});
     if(!existingUser){
-        return res.json({msg: "please sign in first"});
+        return res.json({success: "false"});
     }
 
     bcrypt.compare(password,existingUser.password,async function(err,result){

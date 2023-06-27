@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "https://khanakhazana-ic27.onrender.com",
+  "proxy": "https://khanakhanabackend.onrender.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

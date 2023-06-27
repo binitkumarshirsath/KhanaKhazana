@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
 axios.defaults.baseURL="https://khanakhanabackend.onrender.com";
+// axios.defaults.baseURL="http://localhost:5000";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <BrowserRouter>
