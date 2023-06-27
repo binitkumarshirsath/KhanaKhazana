@@ -30,4 +30,15 @@ router.post("/orderData", async (req, res) => {
   }
 });
 
+router.post('/myOrders',async (req,res)=>{
+  try {
+  
+    const email = req.body.email
+    const data = await Order.findOne({email});
+    return res.send({data : data});
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 export default router;

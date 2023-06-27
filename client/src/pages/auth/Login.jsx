@@ -1,34 +1,33 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
-
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [user,setUser] = useState({
-    email : '',
-    password :''
-  }); 
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
-  function handleChange(e){
-    const{name , value} = e.target;
-    setUser((prevData)=>{
-      return{
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setUser((prevData) => {
+      return {
         ...prevData,
-        [name] : value
-      }
-    })
+        [name]: value,
+      };
+    });
   }
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login',user);
+      const response = await axios.post("/api/login", user);
       const authToken = response.data.token;
-      localStorage.setItem('email',user.email);
-      localStorage.setItem('authToken' , authToken);
-      navigate('/')
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("authToken", authToken);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -39,13 +38,15 @@ export default function Login() {
       <Layout>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-6 col-md-7 intro-section">
-              
-              <div className="intro-content-wrapper">
-                <h1 className="intro-title mt-">Welcome to website !</h1>
-                <p className="intro-text mt-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
+          <div className="col-sm-6 col-md-7 intro-section ">
+              <div className="intro-content-wrapper text-center">
+                <h1 className="intro-title mt-">Welcome to website!</h1>
+                <p className="intro-text ">
+                  Welcome to Khana Khazana, your ultimate destination for
+                  culinary delights! Indulge your taste buds with a diverse
+                  range of flavors, spices, and aromas from around the world.
+                  Our website is a treasure trove of delicious recipes, cooking
+                  tips, and culinary inspiration.
                 </p>
                 <a href="#!" className="btn btn-read-more">
                   Read more
@@ -61,8 +62,8 @@ export default function Login() {
                       Email
                     </label>
                     <input
-                    onChange={handleChange}
-                    value={user.email}
+                      onChange={handleChange}
+                      value={user.email}
                       type="email"
                       name="email"
                       id="email"
@@ -75,8 +76,8 @@ export default function Login() {
                       Password
                     </label>
                     <input
-                    onChange={handleChange}
-                    value={user.password}
+                      onChange={handleChange}
+                      value={user.password}
                       type="password"
                       name="password"
                       id="password"
@@ -86,7 +87,7 @@ export default function Login() {
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-5">
                     <input
-                    onClick={handleSubmit}
+                      onClick={handleSubmit}
                       name="login"
                       id="login"
                       className="btn login-btn"

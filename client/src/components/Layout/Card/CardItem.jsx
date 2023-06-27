@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-
+import { useNavigate } from "react-router-dom";
 import "./CardItem.css";
 import { useCart } from "../../ContextReducer/CotextReducer";
 
 
 export default function CardItem({ item , id }) {
-  
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(item.price);
   const { cartState, dispatch } = useCart();
@@ -19,7 +19,11 @@ export default function CardItem({ item , id }) {
 
   const handleAddToCart = async () => {
     try {
+      if(!localStorage.getItem('email')){
+        navigate('/login');
+      }
       await dispatch({ type: "ADD_TO_CART", payload:{ id , item , quantity} });
+      alert('Added to cart');
     } catch (error) {
       console.log(error);
     }

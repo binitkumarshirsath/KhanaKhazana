@@ -15,19 +15,18 @@ export default function Navbar() {
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">Khana Khazana</Link>
 
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ms-auto">
             {localStorage.getItem('authToken') ?
             <>
             <li className="nav-item">
+            <Link to="/myOrders" className="nav-link text-decoration-none text-white me-2"><i className="bi bi-basket-fill"></i>My Orders</Link>
+            </li>
+            <li className="nav-item">
             <Link to="/cart" className="nav-link text-decoration-none text-white me-2"><i className="bi bi-basket-fill"></i>Cart</Link>
             </li>
-            <li>
-            <Link to="/signup" className="nav-link text-decoration-none text-white btn btn-danger  me-2" onClick={handleLogOut}>Log out</Link>
+            <li className="nav-item">
+            <Link to="/" className="nav-link text-decoration-none text-white btn btn-danger  me-2" onClick={handleLogOut}>Log out</Link>
           </li>
           </>
              :
