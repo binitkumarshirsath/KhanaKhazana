@@ -1,17 +1,18 @@
 import React from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 const OrderItem = ({ orders }) => {
   return (
     <div className="container">
       <h1 className="text-center mb-5">My Orders</h1>
       {orders.map((order, index) => (
-        <div key={index} className="my-4">
+        <div key={uuidv4()} className="my-4">
           <h2 className="mb-4">Order Date: {order[0]}</h2>
           {order.slice(1).map((item) => (
-            <div key={item.id} className="card my-2">
+            <div key={uuidv4()} className="card my-2">
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
+
                     src={item.item.image}
                     className="card-img"
                     alt=""

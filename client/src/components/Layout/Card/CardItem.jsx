@@ -20,7 +20,7 @@ export default function CardItem({ item , id }) {
   const handleAddToCart = async () => {
     try {
       if(!localStorage.getItem('email')){
-        navigate('/login');
+        return navigate('/login');
       }
       await dispatch({ type: "ADD_TO_CART", payload:{ id , item , quantity} });
       alert('Added to cart');
