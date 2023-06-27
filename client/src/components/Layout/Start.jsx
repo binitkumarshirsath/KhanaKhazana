@@ -4,7 +4,7 @@ import f1 from "../../asset/f1.png";
 import f2 from "../../asset/f2.png";
 import f3 from "../../asset/f3.png";
 import axios from "axios";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 export default function Menu() {
 //store data from backend
@@ -63,7 +63,7 @@ export default function Menu() {
         </div>
         <div className="carousel-item active">
           <img
-            src={f1}
+            src={f2}
             className="d-block w-100"
             style={{
               filter: "brightness(45%)",
@@ -73,7 +73,7 @@ export default function Menu() {
         </div>
         <div className="carousel-item">
           <img
-            src={f2}
+            src={f1}
             className="d-block w-100"
             style={{
               filter: "brightness(45%)",

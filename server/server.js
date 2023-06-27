@@ -2,6 +2,7 @@ import express from 'express';
 import 'dotenv/config'
 import connectDB from './db/db.js';
 import router from './Routes/userRoute.js';
+import orderData from './Routes/orderData.js'
 import cors from 'cors'
 connectDB();
 
@@ -13,6 +14,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api',router);
+app.use('/api',orderData);
 app.listen(process.env.PORT,()=>{
     console.log(`Server is up and running at PORT : ${process.env.PORT}`);
 })

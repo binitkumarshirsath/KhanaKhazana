@@ -62,6 +62,7 @@ export default function Register() {
         try {
           const response = await axios.post('/api/register',user)
           console.log('Data sent '+ response);
+          
           navigate('/login')
           setErrors({})
         } catch (error) {
