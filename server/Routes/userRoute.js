@@ -16,7 +16,7 @@ router.post('/register',async (req,res)=>{
 
         const existingUser =  await User.findOne({email});
         if(existingUser){
-            return res.json({msg : "Email already registered"});
+            return res.json({success : "false"});
         }
 
         bcrypt.hash(password,saltRounds,async function(err,hash){
@@ -37,12 +37,13 @@ router.post('/register',async (req,res)=>{
 router.post('/login', async (req,res)=>{
     const {email , password} = req.body;
     if(!email || !password){
-        return res.json({err : "Empty Fields found"});
+        return res.json({success : false,
+            msg : "Empty Fields found"});
     }
 
     const existingUser = await User.findOne({email});
     if(!existingUser){
-        return res.json({success: "false"});
+        return res.json({success: false , msg : "Please Sign Up first" });
     }
 
     bcrypt.compare(password,existingUser.password,async function(err,result){
@@ -51,7 +52,7 @@ router.post('/login', async (req,res)=>{
             return res.json({msg : "Logged in successfully" , token});
         }else{
             console.log(err);
-            return res.json({msg : "Password incorrect"});
+            return res.json({success : false , msg : "Server Error"});
         }
     })
 

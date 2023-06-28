@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
@@ -22,11 +22,26 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+  
+    // Perform email and password validation
+    if (!user.email || !user.password) {
+      console.log('i ran');
+      alert("Please enter both email and password.");
+      return;
+    }
+  
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(user.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+  
     try {
       const response = await axios.post("/api/login", user);
-      if(response.data.success === "false"){
-        alert("Please Signup First");
-        return navigate('/signup');
+      if (response.data.success === false) {
+        alert(response.data.msg);
+        return navigate('/');
       }
       const authToken = response.data.token;
       localStorage.setItem("email", user.email);
@@ -36,6 +51,7 @@ export default function Login() {
       console.log(error);
     }
   }
+  
 
   return (
     <>
@@ -94,7 +110,7 @@ export default function Login() {
                       onClick={handleSubmit}
                       name="login"
                       id="login"
-                      className="btn login-btn"
+                      className="btn login-btn btn-secondary"
                       type="button"
                       defaultValue="Login"
                     />
@@ -105,9 +121,7 @@ export default function Login() {
                 </form>
                 <p className="login-wrapper-footer-text">
                   Need an account?{" "}
-                  <a href="#!" className="text-reset">
-                    Signup here
-                  </a>
+                  <Link to={'/signup'}><button  className="text-reset" >Sign up</button></Link>
                 </p>
               </div>
             </div>

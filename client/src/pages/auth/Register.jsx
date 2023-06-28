@@ -59,7 +59,9 @@ export default function Register() {
     } else {
       try {
         const response = await axios.post("/api/register", user);
-        console.log("Data sent " + response);
+        if(response.data.success === "false"){
+          alert("Email already registered");
+        }
 
         navigate("/login");
         setErrors({});
@@ -179,20 +181,14 @@ export default function Register() {
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-5">
                     <input
-                      name="login"
-                      id="login"
-                      className="btn login-btn"
+                      name="signup"
+                      id="signup"
+                      className="btn btn-secondary"
                       type="submit"
                       value="Register"
                     />
                   </div>
                 </form>
-                <p className="login-wrapper-footer-text">
-                  Need an account?{" "}
-                  <a href="#!" className="text-reset">
-                    Signup here
-                  </a>
-                </p>
               </div>
             </div>
           </div>
