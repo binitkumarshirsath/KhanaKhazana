@@ -30,7 +30,7 @@ export default function CardItem({ item , id }) {
 
   return (
     <div
-      className="card my-3 zoom-effect"
+      className="card my-3 zoom-effect container"
       style={{ maxWidth: "18rem", marginRight: "20px" }}
     >
       <img

@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 const router = express.Router();
 import User from "../models/user.js";
 import jwt from 'jsonwebtoken';
-
+import FoodItems from "../db/FoodItems.js";
 
 router.post('/register',async (req,res)=>{
     const saltRounds = 10;
@@ -60,12 +60,8 @@ router.post('/login', async (req,res)=>{
 })
 
 
-router.post('/foodData',(req,res)=>{
-    res.send([global.foodItems , global.foodCategory])
-})
-
 router.post('/foodDB',(req,res)=>{
-    return res.send(global.foodDB);
+    return res.send(FoodItems);
 })
 
 export default router;

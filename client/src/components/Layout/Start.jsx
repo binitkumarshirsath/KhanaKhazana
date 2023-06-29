@@ -14,7 +14,8 @@ export default function Menu() {
 //get data from backend
   async function getDataFromBackend() {
     const foodDB = await axios.post("/api/foodDB");
-    setMenuItems(foodDB.data[0]);
+    // console.log(foodDB.data);
+    setMenuItems(foodDB.data);
   }
 //call getdatafrombackend only once
   useEffect(() => {
@@ -38,8 +39,8 @@ export default function Menu() {
   return (
     <>
       <Layout>
-      <div id="carouselExampleFade" className="carousel slide carousel-fade m-2 ">
-      <div className="carousel-inner" style={{maxHeight:"550px"}}>
+      <div id="carouselExampleFade" className="carousel slide carousel-fade m-2">
+      <div className="carousel-inner" >
         <div
           className="carousel-caption mb-5"
           style={{ zIndex: "2", alignContent: "center" }}
